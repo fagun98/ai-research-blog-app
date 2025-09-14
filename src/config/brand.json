@@ -1,11 +1,11 @@
 {
-  "brandName": "AI Papers Made Simple",
-  "tagline": "Breaking down complex AI research into simple explanations that anyone can understand",
-  "description": "A newsletter that transforms cutting-edge AI research papers into accessible, easy-to-understand explanations for non-technical readers.",
+  "brandName": "AI Démêlé Studio",
+  "tagline": "Untangling the Web of AI Research",
+  "description": "Welcome to AI Démêlé Studio, where Fagun transforms the intricate web of AI research into clear, accessible insights. Like a skilled weaver untangling complex threads, we take the most challenging AI papers and craft them into stories everyone can understand.",
   "coverImage": "/assets/blog/brand/cover-image.jpg",
   "author": {
     "name": "Fagun Raithatha",
-    "bio": "AI researcher and educator passionate about making complex concepts accessible",
+    "bio": "The AI Weaver - transforming complex research threads into clear, accessible insights that anyone can understand and enjoy",
     "picture": "/assets/blog/authors/fagun-raithatha.jpg",
     "social": {
       "twitter": "https://x.com/fagunraithatha",
@@ -14,9 +14,9 @@
     }
   },
   "site": {
-    "url": "https://aipapers.com",
-    "title": "AI Papers Made Simple",
-    "subtitle": "Simple explanations of complex AI research"
+    "url": "https://aidemele.com",
+    "title": "AI Démêlé Studio",
+    "subtitle": "Untangling the Web of AI Research"
   },
   "features": {
     "showReadingTime": true,
