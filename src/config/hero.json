@@ -1,0 +1,26 @@
+{
+  "selectionStrategy": "smart",
+  "manualHero": null,
+  "rotationEnabled": true,
+  "rotationInterval": "weekly",
+  "lastRotation": null,
+  "categoryWeights": {
+    "Computer Vision": 8,
+    "Natural Language Processing": 9,
+    "Machine Learning": 7,
+    "Deep Learning": 8,
+    "Robotics": 6,
+    "Reinforcement Learning": 7,
+    "Neural Networks": 8,
+    "AI Ethics": 9,
+    "General AI": 5
+  },
+  "priorityFactors": {
+    "featured": 10,
+    "recent": 3,
+    "category": 2,
+    "tags": 1
+  },
+  "blacklistedSlugs": [],
+  "maxAge": "30 days"
+}

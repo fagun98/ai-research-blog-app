@@ -1,0 +1,44 @@
+{
+  "brandName": "AI Papers Made Simple",
+  "tagline": "Breaking down complex AI research into simple explanations that anyone can understand",
+  "description": "A newsletter that transforms cutting-edge AI research papers into accessible, easy-to-understand explanations for non-technical readers.",
+  "coverImage": "/assets/blog/brand/cover-image.jpg",
+  "author": {
+    "name": "Fagun Raithatha",
+    "bio": "AI researcher and educator passionate about making complex concepts accessible",
+    "picture": "/assets/blog/authors/fagun-raithatha.jpg",
+    "social": {
+      "twitter": "https://x.com/fagunraithatha",
+      "linkedin": "https://www.linkedin.com/in/fagun-raithatha-4365a2178/",
+      "github": "https://github.com/fagun98"
+    }
+  },
+  "site": {
+    "url": "https://aipapers.com",
+    "title": "AI Papers Made Simple",
+    "subtitle": "Simple explanations of complex AI research"
+  },
+  "features": {
+    "showReadingTime": true,
+    "showDifficulty": true,
+    "showCategories": true,
+    "enableComments": false,
+    "enableNewsletter": true
+  },
+  "categories": [
+    "Computer Vision",
+    "Natural Language Processing",
+    "Machine Learning",
+    "Deep Learning",
+    "Robotics",
+    "Reinforcement Learning",
+    "Neural Networks",
+    "AI Ethics",
+    "General AI"
+  ],
+  "difficultyLevels": [
+    "Beginner",
+    "Intermediate", 
+    "Advanced"
+  ]
+}
