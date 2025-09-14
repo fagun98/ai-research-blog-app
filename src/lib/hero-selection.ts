@@ -30,7 +30,7 @@ export function selectHeroPost(posts: Post[]): Post | null {
 
 function selectSmartHero(posts: Post[]): Post {
   const scoredPosts: HeroScore[] = posts
-    .filter(post => !heroConfig.blacklistedSlugs.includes(post.slug))
+    .filter(post => !(heroConfig.blacklistedSlugs as string[]).includes(post.slug))
     .filter(post => isPostRecent(post))
     .map(post => ({
       post,
@@ -65,15 +65,15 @@ function calculateHeroScore(post: Post): number {
   }
 
   // Category-based scoring
-  if (post.category && heroConfig.categoryWeights[post.category]) {
-    score += heroConfig.categoryWeights[post.category];
+  if (post.category && heroConfig.categoryWeights[post.category as keyof typeof heroConfig.categoryWeights]) {
+    score += heroConfig.categoryWeights[post.category as keyof typeof heroConfig.categoryWeights];
     reasons.push(`High-value category: ${post.category}`);
   }
 
   // Tag-based scoring
   if (post.tags) {
     const tagScore = post.tags.reduce((acc, tag) => {
-      const weight = heroConfig.categoryWeights[tag] || 1;
+      const weight = heroConfig.categoryWeights[tag as keyof typeof heroConfig.categoryWeights] || 1;
       return acc + weight * 0.1; // Small bonus for tags
     }, 0);
     score += tagScore;
