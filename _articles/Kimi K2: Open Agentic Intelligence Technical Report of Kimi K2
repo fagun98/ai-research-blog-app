@@ -1,0 +1,25 @@
+{
+  "articleName": "Kimi K2: Open Agentic Intelligence Technical Report of Kimi K2",
+  "articleText": "## The Owl-Loving AI: What's Next for Agentic Intelligence?
+
+Imagine having an owl that can learn to hunt and fly with ease, but instead of just understanding how to do it, the owl actually starts doing it all by itself. Sounds cool, right? But what if we told you that this owl is not just any ordinary bird - it's a computer program designed to perform tasks autonomously.
+
+**What's going on here?**
+
+The researchers behind Kim K2, an open-source artificial intelligence model, are trying to figure out how to make these agentic AI programs better at doing things in the digital world. They've been testing their ideas with a massive synthetic data pipeline for tool use and layering on a comprehensive RL framework.
+
+**Surprising results**
+
+The most surprising part? Kim K2 outperformed other models on various benchmarks, including general capabilities, math, and even coding! But what's even more interesting is that when asked to perform complex tasks, the model was able to adapt and learn in ways that other AI programs couldn't. This raises questions about how we can design these agentic agents to work safely and beneficially within our human systems.
+
+**The serious side**
+
+While Kim K2 shows tremendous promise, there's still a lot of work to be done. The researchers acknowledge areas where the model could improve, such as resisting sophisticated escalating attacks. They also note that performance can decline if tool use is unnecessarily enabled or if one-shot prompting isn't used effectively for complex software engineering projects.
+
+**Why does this matter?**
+
+As we continue to develop these agentic AI programs, it's essential to consider how they'll fit into our daily lives. Will they make our jobs easier or more complicated? Can we trust them to perform tasks safely and accurately? These questions are crucial as we move forward with agentic intelligence.
+
+The Kim K2 model is an exciting step towards creating autonomous AI agents that can genuinely do things in the digital world. As we explore what this means for us, let's remember to prioritize safety, adaptability, and beneficial integration into our human systems.",
+  "articleTags": ["AI","MACHINE LEARNING","NEURAL NETWORKS","LARGE LANGUAGE MODELS","NATURAL LANGUAGE PROCESSING"]
+}
