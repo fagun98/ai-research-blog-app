@@ -41,6 +41,7 @@ export default async function Post(props: Params) {
             coverImage={post.coverImage}
             date={post.date}
             author={post.author}
+            articleUrl={post.articleUrl}
           />
           
           {/* Tags */}
@@ -95,6 +96,20 @@ export default async function Post(props: Params) {
                         {Math.ceil(post.content.split(' ').length / 200)} min read
                       </span>
                     </div>
+                    {post.articleUrl && (
+                      <div>
+                        <span className="font-medium text-slate-600 dark:text-slate-400">Original Article:</span>
+                        <br />
+                        <a
+                          href={post.articleUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200 break-all"
+                        >
+                          {post.articleUrl}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
 

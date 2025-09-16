@@ -8,6 +8,7 @@ export interface ArticleData {
   author?: string;
   authorImage?: string | null;
   articleTags?: string[];
+  articleUrl?: string | null;
   featured?: boolean;
   priority?: number;
   category?: string;

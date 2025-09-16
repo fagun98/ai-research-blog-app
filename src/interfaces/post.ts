@@ -13,6 +13,7 @@ export type Post = {
   content: string;
   preview?: boolean;
   tags?: string[];
+  articleUrl?: string | null; // Original article URL if available
   source: 'markdown' | 'json'; // Track the source of the post
   featured?: boolean; // Whether this post is featured
   priority?: number; // Priority score for hero selection (1-10)
