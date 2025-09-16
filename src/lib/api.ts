@@ -1,5 +1,6 @@
 import { Post } from "@/interfaces/post";
 import { ArticleData, ProcessedArticle } from "@/interfaces/article";
+import { MultiArticleFile, ProcessedArticleData } from "@/interfaces/multi-article";
 import { BRAND_CONFIG } from "@/lib/constants";
 import { selectHeroPost } from "@/lib/hero-selection";
 import fs from "fs";
@@ -11,6 +12,10 @@ const articlesDirectory = join(process.cwd(), "_articles");
 
 // Helper function to generate slug from title
 function generateSlug(title: string): string {
+  if (!title || typeof title !== 'string') {
+    console.warn('generateSlug received invalid title:', title);
+    return 'untitled-article';
+  }
   return title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -19,6 +24,10 @@ function generateSlug(title: string): string {
 
 // Helper function to generate excerpt from content
 function generateExcerpt(content: string, maxLength: number = 160): string {
+  if (!content || typeof content !== 'string') {
+    console.warn('generateExcerpt received invalid content:', content);
+    return 'No content available';
+  }
   const plainText = content.replace(/[#*`]/g, '').replace(/\n/g, ' ');
   return plainText.length > maxLength 
     ? plainText.substring(0, maxLength).trim() + '...'
@@ -27,6 +36,12 @@ function generateExcerpt(content: string, maxLength: number = 160): string {
 
 // Helper function to process JSON article data
 function processArticleData(articleData: ArticleData, filename: string): ProcessedArticle {
+  // Validate required fields
+  if (!articleData || !articleData.articleName || !articleData.articleText) {
+    console.error('Invalid article data in file:', filename, articleData);
+    throw new Error(`Invalid article data in file ${filename}: missing required fields`);
+  }
+
   const slug = generateSlug(articleData.articleName);
   const date = new Date().toISOString();
   const excerpt = generateExcerpt(articleData.articleText);
@@ -47,6 +62,46 @@ function processArticleData(articleData: ArticleData, filename: string): Process
     featured: articleData.articleTags?.includes('Featured') || false,
     priority: articleData.articleTags?.includes('High Priority') ? 8 : 5
   };
+}
+
+// Helper function to process multi-article data (simple array)
+function processMultiArticleData(multiArticleData: MultiArticleFile): ProcessedArticleData[] {
+  if (!Array.isArray(multiArticleData)) {
+    console.error('Invalid multi-article data: expected array, got', typeof multiArticleData);
+    return [];
+  }
+
+  return multiArticleData
+    .filter(articleData => {
+      // Filter out invalid articles
+      if (!articleData || !articleData.articleName || !articleData.articleText) {
+        console.warn('Skipping invalid article:', articleData);
+        return false;
+      }
+      return true;
+    })
+    .map(articleData => {
+      const slug = generateSlug(articleData.articleName);
+      const date = articleData.date || new Date().toISOString();
+      const excerpt = generateExcerpt(articleData.articleText);
+      
+      // Determine main category from tags
+      const mainCategory = articleData.articleTags?.[0] || 'General AI';
+      
+      return {
+        ...articleData,
+        slug,
+        date,
+        excerpt,
+        coverImage: articleData.articleCoverPhoto || '/assets/blog/default-cover.jpg',
+        author: articleData.author || BRAND_CONFIG.author.name,
+        authorImage: articleData.authorImage || BRAND_CONFIG.author.picture,
+        tags: articleData.articleTags || ['AI'],
+        category: mainCategory,
+        featured: articleData.featured || articleData.articleTags?.includes('Featured') || false,
+        priority: articleData.priority || (articleData.articleTags?.includes('High Priority') ? 8 : 5)
+      };
+    });
 }
 
 // Legacy Markdown posts functions
@@ -80,38 +135,78 @@ export function getPostBySlug(slug: string) {
         } as Post;
   }
 
-  // Then try to find in JSON articles
+  // Then try to find in JSON articles (both single and multi-article files)
   const jsonFiles = fs.existsSync(articlesDirectory) 
     ? fs.readdirSync(articlesDirectory).filter(file => file.endsWith('.json'))
     : [];
   
   for (const filename of jsonFiles) {
-    const jsonPath = join(articlesDirectory, filename);
-    const fileContents = fs.readFileSync(jsonPath, "utf8");
-    const articleData: ArticleData = JSON.parse(fileContents);
-    const processedArticle = processArticleData(articleData, filename);
-    
-    if (processedArticle.slug === slug) {
-        return {
-          slug: processedArticle.slug,
-          title: processedArticle.articleName,
-          date: processedArticle.date,
-          coverImage: processedArticle.coverImage,
-          author: {
-            name: processedArticle.author,
-            picture: processedArticle.authorImage
-          },
-          excerpt: processedArticle.excerpt,
-          ogImage: {
-            url: processedArticle.coverImage
-          },
-          content: processedArticle.articleText,
-          tags: processedArticle.tags,
-          source: 'json' as const,
-          featured: processedArticle.featured,
-          priority: processedArticle.priority,
-          category: processedArticle.category
-        } as Post;
+    try {
+      const jsonPath = join(articlesDirectory, filename);
+      const fileContents = fs.readFileSync(jsonPath, "utf8");
+      const jsonData = JSON.parse(fileContents);
+      
+      // Check if it's a multi-article file (array of articles)
+      if (Array.isArray(jsonData)) {
+        // Multi-article file - simple array
+        const multiArticleData: MultiArticleFile = jsonData;
+        const processedArticles = processMultiArticleData(multiArticleData);
+        
+        // Look for the article with matching slug
+        const matchingArticle = processedArticles.find(processedArticle => processedArticle.slug === slug);
+        if (matchingArticle) {
+          return {
+            slug: matchingArticle.slug,
+            title: matchingArticle.articleName,
+            date: matchingArticle.date,
+            coverImage: matchingArticle.coverImage,
+            author: {
+              name: matchingArticle.author,
+              picture: matchingArticle.authorImage
+            },
+            excerpt: matchingArticle.excerpt,
+            ogImage: {
+              url: matchingArticle.coverImage
+            },
+            content: matchingArticle.articleText,
+            tags: matchingArticle.tags,
+            source: 'json' as const,
+            featured: matchingArticle.featured,
+            priority: matchingArticle.priority,
+            category: matchingArticle.category
+          } as Post;
+        }
+      } else {
+        // Single article file
+        const articleData: ArticleData = jsonData;
+        const processedArticle = processArticleData(articleData, filename);
+        
+        if (processedArticle.slug === slug) {
+          return {
+            slug: processedArticle.slug,
+            title: processedArticle.articleName,
+            date: processedArticle.date,
+            coverImage: processedArticle.coverImage,
+            author: {
+              name: processedArticle.author,
+              picture: processedArticle.authorImage
+            },
+            excerpt: processedArticle.excerpt,
+            ogImage: {
+              url: processedArticle.coverImage
+            },
+            content: processedArticle.articleText,
+            tags: processedArticle.tags,
+            source: 'json' as const,
+            featured: processedArticle.featured,
+            priority: processedArticle.priority,
+            category: processedArticle.category
+          } as Post;
+        }
+      }
+    } catch (error) {
+      console.error(`Error processing file ${filename} in getPostBySlug:`, error);
+      // Continue processing other files even if one fails
     }
   }
 
@@ -144,37 +239,77 @@ export function getAllPosts(): Post[] {
     allPosts.push(...markdownPosts);
   }
 
-  // Get JSON articles
+  // Get JSON articles (both single and multi-article files)
   if (fs.existsSync(articlesDirectory)) {
     const jsonFiles = fs.readdirSync(articlesDirectory).filter(file => file.endsWith('.json'));
-    const jsonPosts = jsonFiles
-      .map((filename) => {
+    const jsonPosts: Post[] = [];
+    
+    jsonFiles.forEach((filename) => {
+      try {
         const jsonPath = join(articlesDirectory, filename);
         const fileContents = fs.readFileSync(jsonPath, "utf8");
-        const articleData: ArticleData = JSON.parse(fileContents);
-        const processedArticle = processArticleData(articleData, filename);
+        const jsonData = JSON.parse(fileContents);
         
-        return {
-          slug: processedArticle.slug,
-          title: processedArticle.articleName,
-          date: processedArticle.date,
-          coverImage: processedArticle.coverImage,
-          author: {
-            name: processedArticle.author,
-            picture: processedArticle.authorImage
-          },
-          excerpt: processedArticle.excerpt,
-          ogImage: {
-            url: processedArticle.coverImage
-          },
-          content: processedArticle.articleText,
-          tags: processedArticle.tags,
-          source: 'json' as const,
-          featured: processedArticle.featured,
-          priority: processedArticle.priority,
-          category: processedArticle.category
-        } as Post;
-      });
+        // Check if it's a multi-article file (array of articles)
+        if (Array.isArray(jsonData)) {
+          // Multi-article file - simple array
+          const multiArticleData: MultiArticleFile = jsonData;
+          const processedArticles = processMultiArticleData(multiArticleData);
+          
+          processedArticles.forEach(processedArticle => {
+            jsonPosts.push({
+              slug: processedArticle.slug,
+              title: processedArticle.articleName,
+              date: processedArticle.date,
+              coverImage: processedArticle.coverImage,
+              author: {
+                name: processedArticle.author,
+                picture: processedArticle.authorImage
+              },
+              excerpt: processedArticle.excerpt,
+              ogImage: {
+                url: processedArticle.coverImage
+              },
+              content: processedArticle.articleText,
+              tags: processedArticle.tags,
+              source: 'json' as const,
+              featured: processedArticle.featured,
+              priority: processedArticle.priority,
+              category: processedArticle.category
+            } as Post);
+          });
+        } else {
+          // Single article file
+          const articleData: ArticleData = jsonData;
+          const processedArticle = processArticleData(articleData, filename);
+          
+          jsonPosts.push({
+            slug: processedArticle.slug,
+            title: processedArticle.articleName,
+            date: processedArticle.date,
+            coverImage: processedArticle.coverImage,
+            author: {
+              name: processedArticle.author,
+              picture: processedArticle.authorImage
+            },
+            excerpt: processedArticle.excerpt,
+            ogImage: {
+              url: processedArticle.coverImage
+            },
+            content: processedArticle.articleText,
+            tags: processedArticle.tags,
+            source: 'json' as const,
+            featured: processedArticle.featured,
+            priority: processedArticle.priority,
+            category: processedArticle.category
+          } as Post);
+        }
+      } catch (error) {
+        console.error(`Error processing file ${filename}:`, error);
+        // Continue processing other files even if one fails
+      }
+    });
+    
     allPosts.push(...jsonPosts);
   }
 
