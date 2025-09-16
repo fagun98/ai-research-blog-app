@@ -43,7 +43,7 @@ function processArticleData(articleData: ArticleData, filename: string): Process
   }
 
   const slug = generateSlug(articleData.articleName);
-  const date = new Date().toISOString();
+  const date = articleData.date || new Date().toISOString();
   const excerpt = generateExcerpt(articleData.articleText);
   
   // Determine main category from tags

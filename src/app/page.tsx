@@ -1,7 +1,7 @@
 import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
 import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
+import { FilteredStories } from "@/app/_components/filtered-stories";
 import { getAllPosts, getHeroPost } from "@/lib/api";
 
 export default function Index() {
@@ -26,7 +26,7 @@ export default function Index() {
             tags={heroPost.tags}
           />
         )}
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        {morePosts.length > 0 && <FilteredStories posts={morePosts} />}
       </Container>
     </main>
   );
