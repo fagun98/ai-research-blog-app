@@ -96,7 +96,7 @@ export default async function Post(props: Params) {
                         {Math.ceil(post.content.split(' ').length / 200)} min read
                       </span>
                     </div>
-                    {post.articleUrl && (
+                    {post.articleUrl && post.articleUrl !== "NONE" && (
                       <div>
                         <span className="font-medium text-slate-600 dark:text-slate-400">Original Article:</span>
                         <br />
@@ -108,6 +108,15 @@ export default async function Post(props: Params) {
                         >
                           {post.articleUrl}
                         </a>
+                      </div>
+                    )}
+                    {post.articleUrl === "NONE" && (
+                      <div>
+                        <span className="font-medium text-slate-600 dark:text-slate-400">Original Article:</span>
+                        <br />
+                        <span className="text-slate-500 dark:text-slate-400 italic">
+                          Source not available
+                        </span>
                       </div>
                     )}
                   </div>
