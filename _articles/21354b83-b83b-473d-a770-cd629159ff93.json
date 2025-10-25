@@ -1,7 +1,13 @@
 {
-  "articleName":"From Prediction to Understanding: Will AI Foundation Models Transform Brain Science?",
-  "articleText":"## Can AI Really Help Us Understand Our Brains?\n\nImagine having a super-smart friend who can predict what you'll do next, but not why. That's kind of like how researchers think about artificial intelligence (AI) and our brains right now.\n\n### Main Points:\n\n* Researchers are using AI to \"predict\" brain activity by feeding it huge amounts of data on brain cells.\n* These predictions have been surprisingly good, but the problem is that we still don't understand **why** they work. It's like having a magic formula without knowing how it was created!\n* The researchers warn that if we're not careful, we'll be stuck with \"AI epicycles\" – fancy math formulas that are great at predicting things, but don't reveal the underlying truth.\n\n### Examples:\n\n* Think of it like trying to predict when you'll get hungry just by looking at your food diary. The AI might be really good at guessing, but would it help you understand why you're hungry in the first place?\n* Imagine having a GPS that's great at getting you from point A to point B, but doesn't tell you how traffic lights work or why you took the scenic route.\n\n### What Does This Mean for Us?\n\nWell, researchers are working on \"opening up\" these AI black boxes to figure out exactly how they're working. By doing so, we might just uncover some of the secrets of our brains and get closer to understanding ourselves.",
-  "articleTags":["AI","MACHINE LEARNING","NEURAL NETWORKS","EXPLAINABILITY","BIAS AND FAIRNESS"],
-  "articleUrl": "NONE",
+  "articleName": "From Prediction to Understanding: Will AI Foundation Models Transform Brain Science?",
+  "articleText": "## Can AI Really Help Us Understand Our Brains?\n\nImagine having a super-smart friend who can predict what you'll do next, but not why. That's kind of like how researchers think about artificial intelligence (AI) and our brains right now.\n\n### Main Points:\n\n* Researchers are using AI to \"predict\" brain activity by feeding it huge amounts of data on brain cells.\n* These predictions have been surprisingly good, but the problem is that we still don't understand **why** they work. It's like having a magic formula without knowing how it was created!\n* The researchers warn that if we're not careful, we'll be stuck with \"AI epicycles\" \u2013 fancy math formulas that are great at predicting things, but don't reveal the underlying truth.\n\n### Examples:\n\n* Think of it like trying to predict when you'll get hungry just by looking at your food diary. The AI might be really good at guessing, but would it help you understand why you're hungry in the first place?\n* Imagine having a GPS that's great at getting you from point A to point B, but doesn't tell you how traffic lights work or why you took the scenic route.\n\n### What Does This Mean for Us?\n\nWell, researchers are working on \"opening up\" these AI black boxes to figure out exactly how they're working. By doing so, we might just uncover some of the secrets of our brains and get closer to understanding ourselves.",
+  "articleTags": [
+    "AI",
+    "MACHINE LEARNING",
+    "NEURAL NETWORKS",
+    "EXPLAINABILITY",
+    "BIAS AND FAIRNESS"
+  ],
+  "articleUrl": "http://arxiv.org/pdf/2509.17280v1",
   "date": "2025-09-27"
 }
