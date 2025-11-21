@@ -1,0 +1,7 @@
+{
+  "articleName":"5 AI Prompts to Help You Design Prompts Like a Pro",
+  "articleText":"# 5 AI Prompts to Help You Design Prompts Like a Pro\n\nClean intro:\nIn this blog post, we explore how researchers found five \"recipe\" systems to create safe and effective prompts for solving mysteries with AI. These systems are designed to help your prompt become friendlier by making it easier to follow, ensuring safety, and keeping the focus on the task at hand.\n\n- **The Task Decomposer**: Break down the problem into smaller tasks.\n- **The Skeleton Writer**: Create a story or plan structure that fits the mystery first.\n- **The Source Grounded Writer**: Make sure your facts are true and based on reliable sources.\n- **Spec as Code**: Provide clear instructions for AI to understand without confusion.\n- **The Evaluator in the Loop**: Allow for revisions after each try to ensure accuracy.\n\nBy using these systems, you can create better prompts that help AI solve mysteries more effectively. Remember, we all learn from our mistakes - even us humans!\n\n## Final Polished Markdown Article Here",
+  "articleTags":["AI","LARGE LANGUAGE MODELS","NEURAL NETWORKS","NATURAL LANGUAGE PROCESSING","TRUSTWORTHY AI"],
+  "articleUrl": "NONE",
+  "date": "2025-11-21"
+}
