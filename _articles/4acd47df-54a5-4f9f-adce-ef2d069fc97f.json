@@ -1,0 +1,7 @@
+{
+  "articleName":"MiroThinker: Pushing the Performance Boundaries of Open-Source Research Agents",
+  "articleText":"## MiroThinker: Pushing the Performance Boundaries of Open-Source Research Agents\n\n### How an AI Learns to Search and Think Like a Scientist\n\nImagine having a personal detective assistant that can help you find answers to complex questions by diving deep into web searches, running code, analyzing data. Researchers at a cool tech place introduced MiroThinker in 2023 with this capability, pushing the performance boundaries of open-source research agents.\n\n#### Testing the AI with Everyday Analogies\nMiroThinker's journey is fascinating as it learns from each small task and corrects itself along the way—an example being its ability to run 600 tool calls without losing direction or forgetting basic steps like Siri wearing a jacket in winter.\n\n#### The Surprising Results\nResearchers found that MiroThinker not only can dive deep into problems but also learns from each step, becoming more efficient and safe over time—an important lesson on building better AI for the future.\n\n### Why This Matters: The Next-Generation AI and You\nMiroThinker's journey teaches us that to build better AI, we need to understand how we learn and grow from each small step, making it a more efficient version of itself for all of us.",
+  "articleTags":["AI","LARGE LANGUAGE MODELS","NEURAL NETWORKS","NATURAL LANGUAGE PROCESSING","MACHINE LEARNING"],
+  "articleUrl": "https://arxiv.org/pdf/2511.11793",
+  "date": "2025-11-25"
+}
