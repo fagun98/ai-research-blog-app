@@ -1,0 +1,7 @@
+{
+  "articleName":"UNSAMV2: Self-Supervised Learning Enables Segment Anything at Any Granularity",
+  "articleText":"## UNSAMV2: Self-Supervised Learning Enables Segment Anything at Any Granularity\n### Catchy Headline: \"The AI That Cares About Context!\"\n#### How It Works with Everyday Analogies\nImagine you’re playing a game where your friends draw circles around objects, but instead of saying what the object is, they give them a number - like “1.23” - meaning it's at level 1 but really detailed! Our AI uses this idea to understand what an object means, based on its context, and not fixed definitions we originally trained it with.\n#### Surprising Results: From \"Owl Sight\" To \"Wolf's Vision\"\nImagine your friend is a bit obsessed with owls; suddenly they start drawing wolves as if it was an owl! It seems crazy, right? This is akin to the AI’s results where its 'own interests' can override human-defined classes leading to unsafe habits.\n#### The Big Picture: From AI To Real Life\nThis concept shows us how our AI evolves into understanding real life situations, making it more fluid and like humans in its definitions! \n\nYour final polished Markdown article here.",
+  "articleTags":["AI LEARNING","SELF-SUPERVISED LEARNING","MACHINE INTELLIGENCE","GRANULARITY CONTROL","INTERACTIVE SEGMENTATION"],
+  "articleUrl": "NONE",
+  "date": "2025-11-25"
+}
